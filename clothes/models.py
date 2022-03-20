@@ -62,4 +62,4 @@ class ClothesItem(models.Model):
         return self.clothes.name
 
     def get_absolute_url(self):
-        return reverse("manage_item")
+        return reverse("manage_clothes_item")
