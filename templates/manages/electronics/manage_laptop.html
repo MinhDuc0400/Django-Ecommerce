@@ -1,0 +1,39 @@
+{% extends 'manages/base.html' %}
+{% block content %}
+<a href="{% url 'add_laptop' %}" class="btn btn-success" style="margin-top: 10px"><i class="fas fa-plus-square"></i>
+    Add</a>
+
+<h1 class="my-3"></h1>
+
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+			<th>Manufacture</th>
+			<th>Ram</th>
+			<th>Cpu</th>
+			<th>Card</th>
+			<th>Action</th>
+        </tr>
+    </thead>
+    <tbody id="myTable">
+        {% for laptop in laptops %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{laptop.name }}</td>
+            <td>{{laptop.manufacturer}}</td>
+            <td>{{laptop.ram }}</td>
+            <td>{{laptop.cpu }}</td>
+            <td>{{laptop.card }}</td>
+            <td>
+                <a href="{% url 'edit_laptop' laptop.pk %}" class="btn btn-primary"><i class="fas fa-edit"></i> Edit</a>
+                <a href="javascript:void(0);" onclick="Shop.delete('{% url 'delete_laptop' laptop.pk %}')"
+                    class="btn btn-danger"><i class="fas fa-eraser"></i>
+                    Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
