@@ -23,6 +23,9 @@ class Tivi(Electronic):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse("manage_tivi")
+
 
 class Laptop(Electronic):
     ram = models.CharField(max_length=255)
@@ -44,6 +47,9 @@ class MobilePhone(Electronic):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse("manage_mobile_phone")
+
 
 class ElectronicItem(models.Model):
     barCode = models.CharField(max_length=255, primary_key=True)
@@ -57,3 +63,6 @@ class ElectronicItem(models.Model):
 
     def __str__(self):
         return self.electronic.name
+
+    def get_absolute_url(self):
+        return reverse("manage_electronic_item")
