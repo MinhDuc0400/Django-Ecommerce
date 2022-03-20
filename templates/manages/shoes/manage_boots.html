@@ -1,0 +1,41 @@
+{% extends 'manages/base.html' %}
+{% block content %}
+<a href="{% url 'add_boots' %}" class="btn btn-success" style="margin-top: 10px"><i class="fas fa-plus-square"></i>
+    Add</a>
+
+<h1 class="my-3"></h1>
+
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Size</th>
+            <th>Color</th>
+			<th>Material</th>
+			<th>Style</th>
+            <th>isShoelace</th>
+			<th style="width: 200px"></th>
+        </tr>
+    </thead>
+    <tbody id="myTable">
+        {% for boot in boots %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{boot.name }}</td>
+            <td>{{boot.size }}</td>
+            <td>{{boot.color }}</td>
+            <td>{{boot.material}}</td>
+            <td>{{boot.style }}</td>
+            <td>{{boot.isShoelace }}</td>
+            <td>
+                <a href="{% url 'edit_boots' boot.pk %}" class="btn btn-primary"><i class="fas fa-edit"></i> Edit</a>
+                <a onclick="return window.confirm('Bạn có chắc muốn xóa?')" href="{% url 'delete_boots' boot.pk %}" 
+                    class="btn btn-danger"><i class="fas fa-eraser"></i>
+                    Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
