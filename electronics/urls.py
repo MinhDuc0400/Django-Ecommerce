@@ -22,12 +22,12 @@ urlpatterns = [
     path('mobilephones/delete/<int:pk>',
          views.deleteMobilePhone, name='delete_mobile_phone'),
 
-    path('item/', views.ManageElectronicItemView.as_view(),
+    path('items/', views.ManageElectronicItemView.as_view(),
          name='manage_electronic_item'),
-    path('item/add/', views.AddElectronicItemView.as_view(),
+    path('items/add/', views.AddElectronicItemView.as_view(),
          name='add_electronic_item'),
-    path('item/edit/<pk>',
+    path('items/edit/<pk>',
          views.EditElectronicItemView.as_view(), name='edit_electronic_item'),
-    path('item/delete/<pk>', views.deleteElectronicItem,
+    path('items/delete/<pk>', views.deleteElectronicItem,
          name='delete_electronic_item'),
 ]
