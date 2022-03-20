@@ -81,4 +81,4 @@ def deleteItem(request,pk):
     item =BookItem.objects.get(barCode=pk)
     item.status=False
     item.save()
-    return redirect('manage_item')
+    return redirect('manage_book_item')

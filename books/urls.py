@@ -19,8 +19,8 @@ urlpatterns = [
     path('publishers/edit/<int:pk>', views.EditPublisherView.as_view(), name='edit_publisher'),
     path('publishers/delete/<int:pk>', views.deletePublisher, name='delete_publisher'),
     #item
-    path('items', views.ManageItemView.as_view(), name='manage_item'),
-    path('items/add/', views.AddItemView.as_view(), name='add_item'),
-    path('items/edit/<pk>', views.EditItemView.as_view(), name='edit_item'),
-    path('items/delete/<pk>', views.deleteItem, name='delete_item'),
+    path('items', views.ManageItemView.as_view(), name='manage_book_item'),
+    path('items/add/', views.AddItemView.as_view(), name='add_book_item'),
+    path('items/edit/<pk>', views.EditItemView.as_view(), name='edit_book_item'),
+    path('items/delete/<pk>', views.deleteItem, name='delete_book_item'),
 ]

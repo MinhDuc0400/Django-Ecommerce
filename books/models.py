@@ -65,4 +65,4 @@ class BookItem(models.Model):
         return self.book.title+" | "+str(self.price)+" | "+str(self.discount)
 
     def get_absolute_url(self):
-        return reverse("manage_item")
+        return reverse("manage_book_item")
