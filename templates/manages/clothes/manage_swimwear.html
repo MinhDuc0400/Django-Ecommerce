@@ -1,0 +1,42 @@
+{% extends 'manages/base.html' %}
+{% block content %}
+<a href="{% url 'add_swimwear' %}" class="btn btn-success" style="margin-top: 10px"><i class="fas fa-plus-square"></i>
+    Add</a>
+
+<h1 class="my-3"></h1>
+
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th>#</th>
+            <th >Name</th>
+            <th >Color</th>
+            <th >Material</th>
+            <th>BustSize</th>
+            <th>WaistSize</th>
+            <th>HipsSize</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="myTable">
+        {% for swimwear in swimwears %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{swimwear.name }}</td>
+            <td>{{swimwear.color }}</td>
+            <td>{{swimwear.pipe }}</td>
+            {% comment %} <td>
+                {{book.authors.all|join:", " }}</td> {% endcomment %}
+            <td>{{swimwear.bustSize }}</td>
+            <td>{{swimwear.waistSize }}</td>
+            <td>{{swimwear.hipsSize }}</td>
+            <td><a href="{% url 'edit_swimwear' swimwear.pk %}" class="btn btn-primary"><i class="fas fa-edit"></i> Edit</a>
+                <a href="javascript:void(0);" onclick="Shop.delete('{% url 'delete_swimwear' swimwear.pk %}')"
+                    class="btn btn-danger"><i class="fas fa-eraser"></i>
+                    Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
