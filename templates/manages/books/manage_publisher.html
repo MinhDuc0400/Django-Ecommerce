@@ -1,0 +1,32 @@
+{% extends 'manages/base.html' %}
+{% block content %}
+<a href="{% url 'add_publisher' %}" class="btn btn-success" style="margin-top: 10px"><i class="fas fa-plus-square"></i>
+    Add</a>
+
+<h1 class="my-3"></h1>
+
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th>#</th>
+            <th style="width: 210px;">Name</th>
+            <th style="width: 200px;">Address</th>
+            <th style="width: 250px"></th>
+        </tr>
+    </thead>
+    <tbody id="myTable">
+        {% for publisher in publishers %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{publisher.name }}</td>
+            <td>{{publisher.address }}</td>
+            <td><a href="{% url 'edit_publisher' publisher.pk %}" class="btn btn-primary"><i class="fas fa-edit"></i> Edit</a>
+                <a href="javascript:void(0);" onclick="Shop.delete('{% url 'delete_publisher' publisher.pk %}')"
+                    class="btn btn-danger"><i class="fas fa-eraser"></i>
+                    Delete</a> 
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
