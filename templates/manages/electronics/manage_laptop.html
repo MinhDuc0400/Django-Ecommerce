@@ -10,11 +10,13 @@
         <tr>
             <th>#</th>
             <th>Name</th>
+            <th>Warranty</th>
+            <th>Screen size</th>
 			<th>Manufacture</th>
 			<th>Ram</th>
 			<th>Cpu</th>
 			<th>Card</th>
-			<th>Action</th>
+			<th style="width: 200px"></th>
         </tr>
     </thead>
     <tbody id="myTable">
@@ -22,13 +24,15 @@
         <tr>
             <td>{{forloop.counter}}</td>
             <td>{{laptop.name }}</td>
+            <td>{{laptop.warranty }}</td>
+            <td>{{laptop.screenSize }}</td>
             <td>{{laptop.manufacturer}}</td>
             <td>{{laptop.ram }}</td>
             <td>{{laptop.cpu }}</td>
             <td>{{laptop.card }}</td>
             <td>
                 <a href="{% url 'edit_laptop' laptop.pk %}" class="btn btn-primary"><i class="fas fa-edit"></i> Edit</a>
-                <a href="javascript:void(0);" onclick="Shop.delete('{% url 'delete_laptop' laptop.pk %}')"
+                <a onclick="return window.confirm('Bạn có chắc muốn xóa?')" href="{% url 'delete_laptop' laptop.pk %}" 
                     class="btn btn-danger"><i class="fas fa-eraser"></i>
                     Delete</a>
             </td>
