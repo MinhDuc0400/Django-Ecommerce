@@ -68,9 +68,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
-            # 'libraries': {
-            #     'filters': 'templatetags.filters',
-            # },
+            'libraries': {
+                'filters': 'templatetags.filters',
+            },
         },
     },
 ]
@@ -90,14 +90,6 @@ DATABASES = {
         'HOST': '26.6.188.156',
         'PORT': '3306',
     },
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': 'demo',
-    #     'USER': 'root',
-    #     'PASSWORD': 'root',
-    #     'HOST': 'localhost',
-    #     'PORT': '3306',
-    # }
 
 }
 
