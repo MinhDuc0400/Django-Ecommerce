@@ -1,6 +1,6 @@
 {% extends 'manages/base.html' %}
 {% block content %}
-<a href="{% url 'add_item' %}" class="btn btn-success" style="margin-top: 10px"><i class="fas fa-plus-square"></i>
+<a href="{% url 'add_clothes_item' %}" class="btn btn-success" style="margin-top: 10px"><i class="fas fa-plus-square"></i>
     Add</a>
 
 <h1 class="my-3"></h1>
@@ -28,8 +28,8 @@
             <td>{{item.price }}</td>
             <td>{{item.discount}}</td>
             <td>
-                <a href="{% url 'edit_item' item.pk %}" class="btn btn-primary"><i class="fas fa-edit"></i> Edit</a>
-                <a onclick="return window.confirm('Bạn có chắc muốn xóa?')" href="{% url 'delete_item' item.pk %}" 
+                <a href="{% url 'edit_clothes_item' item.pk %}" class="btn btn-primary"><i class="fas fa-edit"></i> Edit</a>
+                <a onclick="return window.confirm('Bạn có chắc muốn xóa?')" href="{% url 'delete_clothes_item' item.pk %}" 
                     class="btn btn-danger"><i class="fas fa-eraser"></i>
                     Delete</a>
             </td>

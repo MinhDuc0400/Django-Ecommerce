@@ -20,8 +20,8 @@ urlpatterns = [
     path('swimwears/edit/<int:pk>', views.EditSwimWearView.as_view(), name='edit_swimwear'),
     path('swimwears/delete/<int:pk>', views.deleteSwimWear, name='delete_swimwear'),
 
-    path('items/', views.ManageItemView.as_view(), name='manage_item'),
-    path('items/add/', views.AddItemView.as_view(), name='add_item'),
-    path('items/edit/<pk>', views.EditItemView.as_view(), name='edit_item'),
-    path('items/delete/<pk>', views.deleteItem, name='delete_item'),
+    path('items/', views.ManageItemView.as_view(), name='manage_clothes_item'),
+    path('items/add/', views.AddItemView.as_view(), name='add_clothes_item'),
+    path('items/edit/<pk>', views.EditItemView.as_view(), name='edit_clothes_item'),
+    path('items/delete/<pk>', views.deleteItem, name='delete_clothes_item'),
 ]
