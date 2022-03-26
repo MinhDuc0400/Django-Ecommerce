@@ -211,6 +211,7 @@ h3.tieu-de::after {
 #footer ul li a {
 	text-decoration: none;
 	color: rgb(186, 223, 218);
+	line-height: 2;
 }
 
 #footer ul li {

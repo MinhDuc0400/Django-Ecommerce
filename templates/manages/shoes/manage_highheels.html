@@ -1,0 +1,41 @@
+{% extends 'manages/base.html' %}
+{% block content %}
+<a href="{% url 'add_highheels' %}" class="btn btn-success" style="margin-top: 10px"><i class="fas fa-plus-square"></i>
+    Add</a>
+
+<h1 class="my-3"></h1>
+
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Size</th>
+            <th>Color</th>
+			<th>Material</th>
+			<th>Style</th>
+            <th>Height</th>
+            <th style="width: 200px"></th>
+        </tr>
+    </thead>
+    <tbody id="myTable">
+        {% for highheel in highheels %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{highheel.name }}</td>
+            <td>{{highheel.size }}</td>
+            <td>{{highheel.color }}</td>
+            <td>{{highheel.material}}</td>
+            <td>{{highheel.style }}</td>
+            <td>{{highheel.height }}</td>
+            <td>
+                <a href="{% url 'edit_highheels' highheel.pk %}" class="btn btn-primary"><i class="fas fa-edit"></i> Edit</a>
+                <a onclick="return window.confirm('Bạn có chắc muốn xóa?')" href="{% url 'delete_highheels' highheel.pk %}" 
+                    class="btn btn-danger"><i class="fas fa-eraser"></i>
+                    Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
