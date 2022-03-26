@@ -27,8 +27,6 @@ def deleteJean(request,pk):
     jean.save()
     return redirect('manage_jean')
 
-
-
 class ManageDressView(ListView):
     context_object_name = 'dresses'
     queryset = Dress.objects.all().filter(status=True)

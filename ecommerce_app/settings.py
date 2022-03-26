@@ -68,9 +68,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
-            # 'libraries': {
-            #     'filters': 'templatetags.filters',
-            # },
+            'libraries': {
+                'filters': 'templatetags.filters',
+            },
         },
     },
 ]
@@ -89,7 +89,8 @@ DATABASES = {
         'PASSWORD': 'root123',
         'HOST': '26.6.188.156',
         'PORT': '3306',
-    }
+    },
+
 }
 
 

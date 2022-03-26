@@ -1,18 +1,18 @@
-$(document).ready(function() {
+$(document).ready(function () {
 	// jquery cho onTop
-	$(document).scroll(function() {
+	$(document).scroll(function () {
 		if ($(document).scrollTop() != 0) {
 			$("#onTop").fadeIn();
 		} else {
 			$("#onTop").fadeOut();
 		}
 	});
-	$("#onTop").click(function() {
+	$("#onTop").click(function () {
 		$("html, body").animate({ scrollTop: 0 }, 700);
 	});
 
 	// jquery cho sticky scroll
-	$('#waypoint_here').waypoint(function(direction) {
+	$('#waypoint_here').waypoint(function (direction) {
 		if (direction == "down") {
 			$('.head-top').addClass('fixed-top');
 
@@ -44,9 +44,9 @@ $(document).ready(function() {
 		height: 300
 	});
 
-	$("#myInput").on("keyup", function() {
+	$("#myInput").on("keyup", function () {
 		var value = $(this).val().toLowerCase();
-		$("#myTable tr").filter(function() {
+		$("#myTable tr").filter(function () {
 			$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
 		});
 	});
@@ -124,7 +124,7 @@ $(document).ready(function() {
 
 var Shop = {
 
-	addToCart: function(slug, category) {
+	addToCart: function (slug, category) {
 		var data = {};
 		data["slug"] = slug;
 		data["category"] = category;
@@ -136,7 +136,7 @@ var Shop = {
 			data: JSON.stringify(data),
 
 			dataType: "json",
-			success: function(jsonResult) {
+			success: function (jsonResult) {
 				if (jsonResult.status == "600") {
 					alert("Bạn đã thêm hàng thành công");
 					$("span.count-item").html(jsonResult.data);
@@ -145,7 +145,7 @@ var Shop = {
 		});
 	},
 
-	addToCartNow: function(slug, category) {
+	addToCartNow: function (slug, category) {
 		var data = {};
 		data["slug"] = slug;
 		data["category"] = category;
@@ -157,14 +157,14 @@ var Shop = {
 			data: JSON.stringify(data),
 
 			dataType: "json",
-			success: function(jsonResult) {
+			success: function (jsonResult) {
 				location.href = "/cart";
 				$("span.count-item").html(jsonResult.data);
 			}
 		});
 	},
 
-	deleteCart: function(slug, category) {
+	deleteCart: function (slug, category) {
 		var flag = confirm("Bạn có chắc chắn muốn xóa sản phẩm này khỏi giỏ hàng?");
 		if (flag == true) {
 			var data = {};
@@ -178,7 +178,7 @@ var Shop = {
 				data: JSON.stringify(data),
 
 				dataType: "json",
-				success: function(jsonResult) {
+				success: function (jsonResult) {
 					if (jsonResult.status == "500") {
 						location.href = "/cart";
 						$("span.count-item").html(jsonResult.data);
@@ -188,7 +188,7 @@ var Shop = {
 		}
 	},
 
-	editCart: function(slug, category) {
+	editCart: function (slug, category) {
 		var quantity = $("#quantity" + slug).val();
 		var data = {};
 		data["quantity"] = quantity;
@@ -203,7 +203,7 @@ var Shop = {
 			data: JSON.stringify(data),
 
 			dataType: "json",
-			success: function(jsonResult) {
+			success: function (jsonResult) {
 				if (jsonResult.status == "400") {
 					$("span.count-item").html(jsonResult.data[0]);
 					$("#price" + slug).html(jsonResult.data[1] + "₫");
@@ -213,8 +213,8 @@ var Shop = {
 		});
 	},
 
-	deleteForm: function(entityId, restApi) {
-		$("#deleteOk").click(function() {
+	deleteForm: function (entityId, restApi) {
+		$("#deleteOk").click(function () {
 			var data = {};
 			data["entityId"] = entityId;
 			$.ajax({
@@ -224,7 +224,7 @@ var Shop = {
 				data: JSON.stringify(data),
 
 				dataType: "json",
-				success: function(jsonResult) {
+				success: function (jsonResult) {
 					if (jsonResult.status == "69") {
 						window.location.reload();
 
@@ -239,7 +239,7 @@ var Shop = {
 		Shop.addUrlParameter('page', (parseInt(tech) + 1));
 	},
 
-	getUrlParameter: function(sParam) {
+	getUrlParameter: function (sParam) {
 		var sPageURL = window.location.search.substring(1),
 			sURLVariables = sPageURL.split('&'),
 			sParameterName,
@@ -272,8 +272,8 @@ var Shop = {
 		searchParams.delete(name);
 		window.location.search = searchParams.toString();
 	},
-	
-	selectShipment: function(idShipment) {
+
+	selectShipment: function (idShipment) {
 		var data = {};
 		data["idShipment"] = idShipment;
 
@@ -284,16 +284,16 @@ var Shop = {
 			data: JSON.stringify(data),
 
 			dataType: "json",
-			success: function(jsonResult) {
+			success: function (jsonResult) {
 				if (jsonResult.status == "84") {
-					$("#shipment-price").html(jsonResult.data.key+"₫");
-					$("#payment-price").html(jsonResult.data.value+"₫");
+					$("#shipment-price").html(jsonResult.data.key + "₫");
+					$("#payment-price").html(jsonResult.data.value + "₫");
 				}
 			}
 		});
 	},
-	
-	editAddress: function(){
+
+	editAddress: function () {
 		var data = {};
 		data["number"] = $('#number').val();
 		data["street"] = $('#street').val();
@@ -307,15 +307,15 @@ var Shop = {
 			data: JSON.stringify(data),
 
 			dataType: "json",
-			success: function(jsonResult) {
+			success: function (jsonResult) {
 				if (jsonResult.status == "333") {
 					window.location.reload();
 				}
 			}
 		});
 	},
-	
-	delete: function(link) {
+
+	delete: function (link) {
 		var flag = confirm("Bạn có chắc chắn muốn xóa?");
 		if (flag == true) {
 			location.href = link;

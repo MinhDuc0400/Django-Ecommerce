@@ -1,7 +1,6 @@
 from pydoc import ModuleScanner
 from unicodedata import name
 from django.db import models
-from numpy import size
 from django.urls import reverse
 
 # Create your models here.
