@@ -94,44 +94,41 @@ h4.tieude-tp::after {
     background: #243a76;
 }
 
-#main .row .col-md-3 .infor{
+#main .row .col-md-3 .infor {
     margin-top: 20px;
 }
 
-#main .row .col-md-3 .infor a{
+#main .row .col-md-3 .infor a {
     color: black;
-
 }
 
-#main .row .col-md-3 .infor a h6{
+#main .row .col-md-3 .infor a h6 {
     color: black;
     height: 40px;
     overflow: hidden;
     font-size: 16px;
-    
 }
 
-#main .row .col-md-3 .infor a h6:hover{
+#main .row .col-md-3 .infor a h6:hover {
     color: rgba(25, 0, 255, 0.959);
 }
 
-#main .row .col-md-3 img:hover{
+#main .row .col-md-3 img:hover {
     transform: scale(1.1, 1.1);
 }
 
-#main .row .col-md-3 a{
+#main .row .col-md-3 a {
     text-decoration: none;
 }
 
-#main .row .col-md-3 a.btn{
+#main .row .col-md-3 a.btn {
     color: white;
 }
 
-#main .row .col-md-3 .infor .gia-goc{
-    
+#main .row .col-md-3 .infor .gia-goc {
 }
 
-#main .row .col-md-3 .infor .gia-goc .gia-chinh{
+#main .row .col-md-3 .infor .gia-goc .gia-chinh {
     color: #666;
     font-size: 16px;
     font-weight: 600;
@@ -140,7 +137,7 @@ h4.tieude-tp::after {
     text-decoration: line-through;
 }
 
-#main .row .col-md-3 .infor .gia-goc .khuyen-mai{
+#main .row .col-md-3 .infor .gia-goc .khuyen-mai {
     color: red;
     display: inline-block;
     font-size: 12px;
@@ -151,7 +148,7 @@ h4.tieude-tp::after {
     font-size: 16px;
 }
 
-#main .row .col-md-3 .infor a:hover{
+#main .row .col-md-3 .infor a:hover {
     color: rgba(25, 0, 255, 0.959);
 }
 
@@ -160,15 +157,14 @@ h4.tieude-tp::after {
 }
 
 .list-clothes img {
-	width: 180px;
+    width: 180px;
     height: 180px;
 }
 .list-shoes img {
-	width: 180px;
+    width: 180px;
     height: 180px;
 }
 
 .list-electronics img {
-    height: 180px;
     width: 180px;
 }

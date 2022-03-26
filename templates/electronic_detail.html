@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+{% load filters %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/item-detail.css' %}">
+
+<div id="main" class="container">
+		<div class="information">
+			<div class="row">
+				<div class="slider col-md-5">
+					<div class="slider-for">
+						<img src="{{electronicitem.img.url}}" alt="item">
+					</div>
+				</div>
+				<div class="col-md-7">
+					<div>
+						<h4>{{electronicitem.electronic.name}}</h4>
+					</div>
+					<div style="margin-top: 30px;">
+                    <table class="table" style="width: 400px">
+                        <tbody>
+                            <tr>
+                                <td>Hãng sản xuất</td>
+                                <td>{{electronicitem.electronic.manufacturer}}</td>
+                            </tr>
+                            <tr>
+                                <td>Bảo hành</td>
+                                <td>{{electronicitem.electronic.warranty}} năm</td>
+                            </tr>
+                            <tr>
+                                <td>Kích thước màn hình</td>
+                                <td>{{electronicitem.electronic.screenSize}} inch</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div style="display: flex; align-items: center">
+                    <h3 class="price" style="color: #d51c24; margin-right: 20px;">
+                        {{electronicitem.price|calcPrice:electronicitem.discount|format_money }}
+                        ₫
+                    </h3>
+                    {% if electronicitem.discount > 0 %}
+                            <h4
+                                style="text-decoration: line-through; line-height: 35px; color: #666; margin-right: 20px;">
+                                {{electronicitem.price|format_money}}
+                                ₫
+                            </h4>
+                            <span style="color: red; font-size: 15px">(Bạn tiết kiệm
+                                được {{electronicitem.discount}} %)</span>
+                    {% endif %}
+                </div>
+                <div class="table-mid" style="margin-top: 20px">
+                    <div class="button" style="display: flex">
+                        <a
+                            href="javascript:Shop.addToCart('${electronicsItem.slug}','electronics');"
+                            class="btn1"
+                            style="background-color: #ffeee8; line-height: 46px; margin-right: 40px; color: #ee4d2d;">
+                            <i class="fas fa-cart-plus"></i> Thêm vào giỏ hàng
+                        </a> <a
+                            href="javascript:Shop.addToCartNow('${electronicsItem.slug}','electronics');"
+                            class="btn2"
+                            style="line-height: 46px; color: white; font-size: 16px; font-weight: 600;">MUA
+                            NGAY</a>
+                    </div>
+                </div>
+			</div>
+		</div>
+
+		<div class="electronics">
+			<h4 class="mb-4">Các sản phẩm tương tự</h4>
+			<div class="row">
+				{% for item in sameItems %}
+                {% if forloop.counter < 5 %} 
+					<div class="col-md-3">
+						<div style="text-align: center; display: flex; align-items: center; height: 200px;">
+							<a href="{% url 'electronic_detail' item.barCode %}" style="margin: auto;">
+                                <img src="{{item.img.url}}" alt="product">
+                            </a>
+						</div>
+						<div class="infor" style="text-align: center;">
+							<a href="{% url 'electronic_detail' item.barCode %}">
+								<h6>{{item.electronic.name}}</h6>
+							</a>
+							{% if item.discount > 0 %}
+                            <div class="gia-goc">
+                                <p class="gia-chinh">
+                                    {{item.price|format_money}}
+                                    ₫
+                                </p>
+                                <p class="khuyen-mai">(Tiết kiệm: {{item.discount}} %)</p>
+                            </div>
+                            {% endif %}
+                            <h6 class="gia-ban">
+                                {{item.price|calcPrice:item.discount|format_money }}
+                                ₫
+                            </h6>
+                            <a href="javascript:Shop.addToCart('{{electronicsItem.barCode}}');"><i class="fas fa-shopping-cart"></i>&nbsp;Mua ngay</a>
+						</div>
+					</div>
+                    {% endif %}
+				{% endfor %}
+			</div>
+		</div>
+		
+		<div class="electronics">
+			<h4 class="mb-4">Hỏi đáp về sản phẩm</h4>
+			<div class="comment-fb">
+				<div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/${electronicsItem.barCode}" data-width="100%" data-numposts="5"></div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

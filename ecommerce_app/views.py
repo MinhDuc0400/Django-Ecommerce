@@ -36,6 +36,7 @@ class CategoryElectronicView(ListView):
         _manufacturer = self.request.GET.get('manufacturer')
         _price = self.request.GET.get('price')
         _sort = self.request.GET.get('sort')
+        _page = self.request.GET.get('page')
         if _manufacturer:
             electronicItems = electronicItems.filter(
                 electronic__manufacturer=_manufacturer)
@@ -62,6 +63,24 @@ class CategoryElectronicView(ListView):
             elif _sort == 'high-to-low':
                 electronicItems = electronicItems.annotate(priceBought=F(
                     'price')*((100-F('discount'))/100)).order_by('-priceBought')
+
+        paginator = Paginator(electronicItems, 8)
+        electronicItems = paginator.get_page(_page)
+
         return electronicItems
 
     template_name = 'category_electronic.html'
+
+
+class CategoryElectronicDetailView(DetailView):
+    model = ElectronicItem
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['sameItems'] = ElectronicItem.objects.filter(
+            status=True).exclude(barCode=self.kwargs['pk']).order_by('?')
+        print(ElectronicItem.objects.filter(
+            status=True).exclude(barCode=self.kwargs['pk']).order_by('?'))
+        return context
+
+    template_name = 'electronic_detail.html'

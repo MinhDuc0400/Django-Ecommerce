@@ -97,9 +97,21 @@
         <div class="product-list">
             <div class="list-sort">
                 <select id="sort-select" onchange="Shop.addUrlParameter('sort', this.value)">
+                    {% if request.GET.sort == None or request.GET.sort == '' %}
                     <option value="">Sắp xếp sản phẩm</option>
                     <option value="low-to-high">Giá tăng dần</option>
                     <option value="high-to-low">Giá giảm dần</option>
+
+                    {% elif request.GET.sort == 'low-to-high' %}
+                    <option value="">Sắp xếp sản phẩm</option>
+                    <option value="low-to-high" selected>Giá tăng dần</option>
+                    <option value="high-to-low">Giá giảm dần</option>
+
+                    {% elif request.GET.sort == 'high-to-low' %}
+                    <option value="">Sắp xếp sản phẩm</option>
+                    <option value="low-to-high">Giá tăng dần</option>
+                    <option value="high-to-low" selected>Giá giảm dần</option>
+                    {% endif %}
                 </select>
             </div>
 
@@ -107,11 +119,11 @@
                 <div class="row">
                     {% for electronicsItem in electronicItems %}
                     <div class="col-md-3">
-                        <div style="text-align: center;">
-                            <a href=""><img src="{{electronicsItem.img.url}}" alt="product"></a>
+                        <div style="display: flex; height: 180px; align-items: center; text-align: center;">
+                            <a href="{% url 'electronic_detail' electronicsItem.barCode %}"><img src="{{electronicsItem.img.url}}" alt="product"></a>
                         </div>
                         <div class="infor" style="text-align: center;">
-                            <a href="">
+                            <a href="{% url 'electronic_detail' electronicsItem.barCode %}">
                                 <h6>{{electronicsItem.electronic.name}}</h6>
                             </a>
 

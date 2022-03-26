@@ -6,7 +6,7 @@
 
 .header-top-left {
 	align-self: center;
-	color: #020528E6;
+	color: #020528e6;
 }
 
 .header-top-right {
@@ -17,7 +17,7 @@
 }
 
 .header-top-right a {
-	color: #020528E6;
+	color: #020528e6;
 }
 
 .header-top-right a:hover {
@@ -26,12 +26,12 @@
 }
 
 .header-bottom {
-	background-color: #020528E6;
+	background-color: #020528e6;
 	line-height: 70px;
 }
 
 .header-separator {
-	border-right: 1px solid #020528E6;
+	border-right: 1px solid #020528e6;
 	height: 18px;
 	margin: 0px 14px;
 }
@@ -65,7 +65,7 @@
 	top: 20px;
 	right: calc(50% - 38px);
 	background-color: #c9cada;
-	color: #020528E6;
+	color: #020528e6;
 	line-height: 14px;
 	font-size: 14px;
 	border-radius: 10px;
@@ -122,7 +122,6 @@ h3.tieu-de::after {
 
 #main .electronics .row .col-md-3 img {
 	width: 200px;
-	height: 200px;
 }
 
 #main .shoes .row .col-md-3 img {
@@ -232,15 +231,15 @@ h3.tieu-de::after {
 	font-weight: 700;
 }
 
-#onTop{
-    width:40px;
-    display:none
+#onTop {
+	width: 40px;
+	display: none;
 }
-#toTop{
-    position:fixed;
-    right:20px;
-    bottom:20px;
-    cursor:pointer
+#toTop {
+	position: fixed;
+	right: 20px;
+	bottom: 20px;
+	cursor: pointer;
 }
 #hotline_img {
 	width: 65px;
@@ -252,21 +251,21 @@ h3.tieu-de::after {
 	position: relative;
 	animation-name: example;
 	animation-duration: 4s;
-	animation-iteration-count: infinite
+	animation-iteration-count: infinite;
 }
 
 #hotline {
 	position: fixed;
 	left: 22px;
 	bottom: 87px;
-	cursor: pointer
+	cursor: pointer;
 }
 
 @keyframes example {
 	from {
-		border: 5px solid rgba(188, 192, 194, .4)
+		border: 5px solid rgba(188, 192, 194, 0.4);
 	}
 	to {
-		border: 10px solid rgba(188, 192, 194, .4)
+		border: 10px solid rgba(188, 192, 194, 0.4);
 	}
 }
