@@ -35,6 +35,7 @@ class CategoryElectronicView(ListView):
         electronicItems = ElectronicItem.objects.filter(status=True)
         _manufacturer = self.request.GET.get('manufacturer')
         _price = self.request.GET.get('price')
+        _sort = self.request.GET.get('sort')
         if _manufacturer:
             electronicItems = electronicItems.filter(
                 electronic__manufacturer=_manufacturer)
@@ -48,6 +49,19 @@ class CategoryElectronicView(ListView):
             elif _price == '10trden15tr':
                 electronicItems = electronicItems.annotate(priceBought=F(
                     'price')*((100-F('discount'))/100)).filter(priceBought__gte=10000000, priceBought__lt=15000000)
+            elif _price == '15trden25tr':
+                electronicItems = electronicItems.annotate(priceBought=F(
+                    'price')*((100-F('discount'))/100)).filter(priceBought__gte=15000000, priceBought__lt=25000000)
+            elif _price == 'tren25tr':
+                electronicItems = electronicItems.annotate(priceBought=F(
+                    'price')*((100-F('discount'))/100)).filter(priceBought__gte=25000000)
+        if _sort:
+            if _sort == 'low-to-high':
+                electronicItems = electronicItems.annotate(priceBought=F(
+                    'price')*((100-F('discount'))/100)).order_by('priceBought')
+            elif _sort == 'high-to-low':
+                electronicItems = electronicItems.annotate(priceBought=F(
+                    'price')*((100-F('discount'))/100)).order_by('-priceBought')
         return electronicItems
 
     template_name = 'category_electronic.html'
