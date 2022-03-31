@@ -70,9 +70,9 @@
                 </div>
 
                 <div class="col-md-3">
-                    <a href="/book"><img src="{% static 'img/book.png' %}" alt="product"></a>
+                    <a href="{% url 'category_books' %}"><img src="{% static 'img/book.png' %}" alt="product"></a>
                     <div class="infor" style="text-align: center;">
-                        <a href="/book">
+                        <a href="{% url 'category_books' %}">
                             <h6>Book</h6>
                         </a>
                     </div>
@@ -87,11 +87,11 @@
                 {% for bookitem in bookItems %}
                 {% if forloop.counter < 5 %} 
                 <div class="col-md-3">
-                    <div style="text-align: center;  display: flex; align-items: center; height: 200px;">
-                        <a href=""><img src="{{bookitem.img.url}}" alt="product"></a>
+                    <div style="text-align: center;">
+                        <a href="{% url 'book_detail' bookitem.barCode %}"><img src="{{bookitem.img.url}}" alt="product"></a>
                     </div>
                     <div class="infor" style="text-align: center;">
-                        <a href="">
+                        <a href="{% url 'book_detail' bookitem.barCode %}">
                             <h6>{{bookitem.book.title}}</h6>
                         </a>
 

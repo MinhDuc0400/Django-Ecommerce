@@ -30,6 +30,9 @@ urlpatterns = [
          name='category_electronics'),
     path('electronics/detail/<pk>', views.CategoryElectronicDetailView.as_view(),
          name='electronic_detail'),
+    path('category/books/', views.CategoryBookView.as_view(), name='category_books'),
+    path('books/detail/<pk>', views.CategoryBookDetailView.as_view(),
+         name='book_detail'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL,
                       document_root=settings.STATIC_ROOT)
