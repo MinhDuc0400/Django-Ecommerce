@@ -26,6 +26,12 @@ urlpatterns = [
     path('manage/shoes/', include('shoes.urls')),
     path('manage/electronics/', include('electronics.urls')),
     path('manage/clothes/', include('clothes.urls')),
+    path('category/clothes/', views.CategoryClothesView.as_view(),
+         name='category_clothes'),
+    path('clothes/detail/<pk>', views.CategoryClothesDetailView.as_view(),
+         name='clothes_detail'),
+
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL,
                       document_root=settings.STATIC_ROOT)
