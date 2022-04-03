@@ -33,6 +33,11 @@ urlpatterns = [
     path('category/books/', views.CategoryBookView.as_view(), name='category_books'),
     path('books/detail/<pk>', views.CategoryBookDetailView.as_view(),
          name='book_detail'),
+    path('category/shoes/', views.CategoryShoesView.as_view(),
+         name='category_shoes'),
+    path('shoes/detail/<pk>', views.CategoryShoesDetailView.as_view(),
+         name='shoes_detail'),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL,
                       document_root=settings.STATIC_ROOT)

@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+{% load filters %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/category.css' %}">
+
+<div id="main" class="container all-item">
+    <h4 class="tieude-tp">SHOES</h4>
+    <div class="loc-sp">
+        <span class="title-x">LỌC SẢN PHẨM</span>
+        <div class="danh-muc">
+            <span class="title">Thể Loại</span>
+            <ul class="list-unstyled">
+                <li>
+                    <a href="javascript:void(0);" onclick="Shop.addUrlParameter('style', 'Trẻ em')">
+                        <i class="fas fa-angle-double-right"></i> Trẻ em
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0);" onclick="Shop.addUrlParameter('style', 'Thanh niên')">
+                        <i class="fas fa-angle-double-right"></i> Thanh niên
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0);" onclick="Shop.addUrlParameter('style', 'Người cao tuổi')">
+                        <i class="fas fa-angle-double-right"></i> Người cao tuổi
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0);" onclick="Shop.addUrlParameter('style', 'Phụ nữ mang thai')">
+                        <i class="fas fa-angle-double-right"></i>Phụ nữ mang thai
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+        <div class="khoang-gia">
+            <span class="title">KHOẢNG GIÁ</span>
+            <ul class="list-unstyled">
+                {% if request.GET.price == None %}
+                <li><a href="javascript:void(0);" onclick="Shop.addUrlParameter('price', 'duoi100000')"><i
+                            class="far fa-square"></i> Dưới 100.000 ₫</a></li>
+                <li><a href="javascript:void(0);" onclick="Shop.addUrlParameter('price', '100000den200000')"><i
+                            class="far fa-square"></i> Từ 100.000 đ đến 200.000 ₫</a></li>
+                <li><a href="javascript:void(0);" onclick="Shop.addUrlParameter('price', 'tren200000')"><i
+                            class="far fa-square"></i> Trên 200.000 ₫ </a></li>
+                
+                {% elif request.GET.price == 'duoi100000' %}
+                <li><a href="javascript:void(0);" onclick="Shop.deleteUrlParameter('price')"><i
+                    class="far fa-check-square"></i> Dưới 100.000 ₫</a></li>
+                {% elif request.GET.price == '100000den200000' %}
+                <li><a href="javascript:void(0);" onclick="Shop.deleteUrlParameter('price')"><i
+                    class="far fa-check-square"></i> Từ 100.000 đ đến 200.000 ₫</a></li>
+                {% elif request.GET.price == 'tren200000' %}
+                <li><a href="javascript:void(0);" onclick="Shop.deleteUrlParameter('price')"><i
+                    class="far fa-check-square"></i> Trên 200.000 ₫</a></li>
+                
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="product-sp">
+        <div class="product-list">
+            <div class="list-sort">
+                <select id="sort-select" onchange="Shop.addUrlParameter('sort', this.value)">
+                    {% if request.GET.sort == None or request.GET.sort == '' %}
+                        <option value="">Sắp xếp sản phẩm</option>
+                        <option value="low-to-high">Giá tăng dần</option>
+                        <option value="high-to-low">Giá giảm dần</option>
+
+                    {% elif request.GET.sort == 'low-to-high' %}
+                        <option value="">Sắp xếp sản phẩm</option>
+                        <option value="low-to-high" selected>Giá tăng dần</option>
+                        <option value="high-to-low">Giá giảm dần</option>
+    
+                    {% elif request.GET.sort == 'high-to-low' %}
+                        <option value="">Sắp xếp sản phẩm</option>
+                        <option value="low-to-high">Giá tăng dần</option>
+                        <option value="high-to-low" selected>Giá giảm dần</option>
+
+                    {%endif%}
+    
+                </select>
+            </div>
+
+            <div class="list-electronics">
+                <div class="row">
+                    {% for shoesItem in ShoesItems %}
+                    {% comment %} {% if forloop.counter < 5 %}  {% endcomment %}
+                    <div class="col-md-3">
+                        <div style="display: flex; height: 180px; align-items: center; text-align: center;">
+                            <a href="{% url 'shoes_detail' shoesItem.barCode %}"><img src="{{shoesItem.img.url}}" alt="product"></a>
+                        </div>
+                        <div class="infor" style="text-align: center;">
+                            <a href="{% url 'shoes_detail' shoesItem.barCode %}">
+                                <h6>{{shoesItem.shoes.name}}</h6>
+                            </a>
+
+                            {% if shoesItem.discount > 0 %}
+                            <div class="gia-goc">
+                                <p class="gia-chinh">
+                                    {{shoesItem.price|format_money}}
+                                    ₫
+                                </p>
+                                <p class="khuyen-mai">(Tiết kiệm: {{shoesItem.discount}} %)</p>
+                            </div>
+
+                            {% endif %}
+                            <h6 class="gia-ban">
+                                {{shoesItem.price|calcPrice:shoesItem.discount|format_money }}
+                                ₫
+                            </h6>
+                            <a href="javascript:Shop.addToCart('{{shoesItem.barCode}}');"><i class="fas fa-shopping-cart"></i>&nbsp;Mua ngay</a>
+                        </div>
+                    </div>
+                    
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="list-sort" style="margin-top: 3rem;">
+                <div class="paging mx-auto">
+                    <a href="javascript:Shop.goPrev()">Previous</a> <a href="javascript:void(0);"
+                        onclick="Shop.addUrlParameter('page', 1)">1</a> <a class="pa1"href="javascript:void(0);"
+                        onclick="Shop.addUrlParameter('page', 2)">2</a> <a class="pa2"href="javascript:void(0);"
+                        onclick="Shop.addUrlParameter('page', 3)">3</a> <a class="pa3" href="javascript:void(0);"
+                        onclick="Shop.addUrlParameter('page', 4)">4</a> <a class="pa4" href="javascript:void(0);"
+                        onclick="Shop.addUrlParameter('page', 5)">5</a> <a href="javascript:Shop.goNext()">Next</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clear-with-height"></div>
+{% endblock %}

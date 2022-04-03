@@ -22,10 +22,11 @@ class HomeView(ListView):
         context['electronicsItems'] = ElectronicItem.objects.filter(
             status=True)
         context['shoesItems'] = ShoesItem.objects.filter(status=True)
-        context['clothesItems'] = ClothesItem.objects.filter(status=True)
+        context['ShoesItems'] = ShoesItem.objects.filter(status=True)
         return context
 
     template_name = 'home.html'
+
 
 class CategoryElectronicView(ListView):
     context_object_name = 'electronicItems'
@@ -83,6 +84,8 @@ class CategoryElectronicDetailView(DetailView):
         return context
 
     template_name = 'electronic_detail.html'
+
+
 class CategoryBookView(ListView):
     context_object_name = 'bookItems'
 
@@ -116,19 +119,71 @@ class CategoryBookView(ListView):
         paginator = Paginator(bookItems, 8)
         bookItems = paginator.get_page(_page)
         return bookItems
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['publishers']=Publisher.objects.filter(status=True)
+        context['publishers'] = Publisher.objects.filter(status=True)
         return context
     template_name = 'category_book.html'
-        
 
 
 class CategoryBookDetailView(DetailView):
     model = BookItem
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['sameBookItems'] = BookItem.objects.filter(
             status=True).exclude(barCode=self.kwargs['pk']).order_by('?')
         return context
     template_name = 'book_detail.html'
+
+
+class CategoryShoesView(ListView):
+    context_object_name = 'ShoesItems'
+
+    def get_queryset(self):
+        ShoesItems = ShoesItem.objects.filter(status=True)
+
+        _price = self.request.GET.get('price')
+        _sort = self.request.GET.get('sort')
+        _page = self.request.GET.get('page')
+
+        if _price:
+            if _price == 'duoi100000':
+                ShoesItems = ShoesItems.annotate(priceBought=F(
+                    'price')*((100-F('discount'))/100)).filter(priceBought__lt=100000)
+            elif _price == '100000den200000':
+                ShoesItems = ShoesItems.annotate(priceBought=F(
+                    'price')*((100-F('discount'))/100)).filter(priceBought__gte=100000, priceBought__lt=200000)
+            elif _price == 'tren200000':
+                ShoesItems = ShoesItems.annotate(priceBought=F(
+                    'price')*((100-F('discount'))/100)).filter(priceBought__gte=200000)
+
+        if _sort:
+            if _sort == 'low-to-high':
+                ShoesItems = ShoesItems.annotate(priceBought=F(
+                    'price')*((100-F('discount'))/100)).order_by('priceBought')
+            elif _sort == 'high-to-low':
+                ShoesItems = ShoesItems.annotate(priceBought=F(
+                    'price')*((100-F('discount'))/100)).order_by('-priceBought')
+
+        paginator = Paginator(ShoesItems, 8)
+        ShoesItems = paginator.get_page(_page)
+
+        return ShoesItems
+
+    template_name = 'category_Shoes.html'
+
+
+class CategoryShoesDetailView(DetailView):
+    model = ShoesItem
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['sameItems'] = ShoesItem.objects.filter(
+            status=True).exclude(barCode=self.kwargs['pk']).order_by('?')
+        print(ShoesItem.objects.filter(
+            status=True).exclude(barCode=self.kwargs['pk']).order_by('?'))
+        return context
+
+    template_name = 'Shoes_detail.html'
