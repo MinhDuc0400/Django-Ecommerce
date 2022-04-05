@@ -143,10 +143,14 @@ class CategoryShoesView(ListView):
 
     def get_queryset(self):
         ShoesItems = ShoesItem.objects.filter(status=True)
-
+        
+        _style = self.request.GET.get('style')
         _price = self.request.GET.get('price')
         _sort = self.request.GET.get('sort')
         _page = self.request.GET.get('page')
+
+        if _style:
+            ShoesItems = ShoesItems.filter(shoes__style=_style)
 
         if _price:
             if _price == 'duoi100000':
