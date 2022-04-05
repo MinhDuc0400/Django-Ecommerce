@@ -30,13 +30,10 @@ class CategoryClothesView(ListView):
 
     def get_queryset(self):
         clothesItems = ClothesItem.objects.filter(status=True)
-        # _manufacturer = self.request.GET.get('manufacturer')
         _price = self.request.GET.get('price')
         _sort = self.request.GET.get('sort')
         _page = self.request.GET.get('page')
-        # if _manufacturer:
-        #     electronicItems = electronicItems.filter(
-        #         electronic__manufacturer=_manufacturer)
+
         if _price:
             if _price == 'duoi100000':
                 clothesItems = clothesItems.annotate(priceBought=F(
