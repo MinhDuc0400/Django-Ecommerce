@@ -37,6 +37,10 @@ urlpatterns = [
          name='category_shoes'),
     path('shoes/detail/<pk>', views.CategoryShoesDetailView.as_view(),
          name='shoes_detail'),
+    path('category/clothes/', views.CategoryClothesView.as_view(),
+         name='category_clothes'),
+    path('clothes/detail/<pk>', views.CategoryClothesDetailView.as_view(),
+         name='clothes_detail'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL,

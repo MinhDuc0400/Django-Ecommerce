@@ -71,7 +71,7 @@ def deleteSwimWear(request,pk):
 class ManageItemView(ListView):
     context_object_name = 'clothesitems'
     queryset = ClothesItem.objects.all().filter(status=True)
-    template_name = 'manages/clothes/manage_item.html'
+    template_name = 'manages/clothes/manage_clothes_item.html'
 
 class AddItemView(CreateView):
     form_class = ClothesItemFormAdd
