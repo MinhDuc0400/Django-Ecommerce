@@ -1,12 +1,12 @@
 /*---------------------------------- HEADER ------------------------*/
 .header-top {
-	background-color: #c9cada;
-	border-bottom: 1px solid orange;
+	background-color: #FA502F;
+	border-bottom: 1px solid #FA502F;
 }
 
 .header-top-left {
 	align-self: center;
-	color: #020528e6;
+	color: #FA502F;
 }
 
 .header-top-right {
@@ -17,7 +17,7 @@
 }
 
 .header-top-right a {
-	color: #020528e6;
+	color: white;
 }
 
 .header-top-right a:hover {
@@ -26,12 +26,12 @@
 }
 
 .header-bottom {
-	background-color: #020528e6;
+	background-color: #FA502F;
 	line-height: 70px;
 }
 
 .header-separator {
-	border-right: 1px solid #020528e6;
+	border-right: 1px solid #FA502F;
 	height: 18px;
 	margin: 0px 14px;
 }
@@ -196,11 +196,11 @@ h3.tieu-de::after {
 
 /*---------------------- FOOTER --------------------------*/
 #footer {
-	border-top: 2px solid orange;
+	border-top: 2px solid #FA502F;
 	margin-top: 55px;
-	background-color: rgba(2, 5, 40, 0.9);
+	background-color: #FA502F;
 	padding-top: 20px;
-	color: aliceblue;
+	color: white;
 }
 
 #footer ul {
@@ -222,7 +222,7 @@ h3.tieu-de::after {
 }
 
 #footer h4 {
-	color: orange;
+	color: white;
 	font-size: 25px;
 	font-weight: 700;
 }
